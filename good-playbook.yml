@@ -1,0 +1,22 @@
+---
+
+- name: configuring frontend
+  hosts: frontends
+  become: yes
+  roles: 
+    - base-config
+    - haproxy
+
+- name: configuring application server
+  hosts: apps
+  become: yes
+  roles:
+    - base-config
+    - app-server
+
+- name: configuring db server
+  hosts: appdbs
+  become: yes
+  roles:
+    - base-config
+    - geerlingguy.postgresql
